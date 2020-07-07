@@ -1,0 +1,27 @@
+{
+  "name": "growapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mariadb": "^2.4.1",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
+    "mongoose": "^5.9.22",
+    "node-uuid": "^1.4.8",
+    "nodemon": "^2.0.4",
+    "swagger-ui-express": "^4.1.4",
+    "sync-request": "^6.1.0",
+    "uniqid": "^5.2.0",
+    "uuid": "^8.2.0"
+  }
+}
