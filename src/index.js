@@ -13,6 +13,8 @@ app.use('/users', userRoute);
 app.use('/auth', authRoute);
 app.use('/articles', articleRoute);
 
+app.use(express.static('../public'));
+
 app.listen(3030, () => {
    console.log("server open at localhost:3030");
 });
