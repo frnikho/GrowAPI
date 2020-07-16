@@ -5,14 +5,21 @@ const route = express.Router();
 const UserConfig = require('./controllers/user.controllers.js');
 const AuthConfig = require('../common/middlewares/auth.middleware.js');
 
-route.get('/', (req, res) => {
-    res.json({abc: 'def'});
+route.get('/', [AuthConfig.verifyEmailAndPasswordField, AuthConfig.checkIfEmailAndPasswordMatch], (req, res) => {
+    UserConfig.getUser(req, res).then((result) => {
+        if (result === -1)
+            return res.send({code: 421, error: "An error occurred, please try again later"})
+        return res.send(result);
+    });
 })
 
-route.post('/', [AuthConfig.verifyLoginAndPassword], (req, res) => {
+route.post('/', [AuthConfig.verifyEmailAndPasswordField], (req, res) => {
     UserConfig.createUser(req, res).then((result) => {
-        if (result !== -1)
-            res.send({id: result});
+        if (result !== -1) {
+            res.send({code: 200, message: "user created !", id: result});
+        } else {
+            res.send
+        }
     });
 });
 
