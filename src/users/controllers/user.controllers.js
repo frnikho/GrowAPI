@@ -25,7 +25,7 @@ exports.createUser = async (req, res) => {
 }
 
 exports.getUser = async (req, res) => {
-    let email = req.body['email'];
+    let email = req.query['email'];
 
     let rt = await db.query(`SELECT id, email, firstname, lastname, date, phone FROM ${process.env.DB_DATABASE}.users WHERE email LIKE BINARY '${email}'`).then((rows) => {
         if (rows[0] == null || rows[0] === 'undefined') {

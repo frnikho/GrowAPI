@@ -1,5 +1,5 @@
-const mariadb = require('mariadb');
-const pool = mariadb.createPool({
+const mariaDB = require('mariadb');
+const pool = mariaDB.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,

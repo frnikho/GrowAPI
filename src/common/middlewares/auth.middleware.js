@@ -3,9 +3,9 @@ const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 
 exports.verifyEmailAndPasswordField = (req, res, next) => {
-    if (req.body['email'] && req.body['password']) {
-        let email = req.body['email'];
-        let password = req.body['password'];
+    if (req.query['email'] && req.query['password']) {
+        let email = req.query['email'];
+        let password = req.query['password'];
 
         if (email.length < 5)
             return res.send({status: 400, code: "Your email must be higher than 5 character"});
@@ -17,8 +17,8 @@ exports.verifyEmailAndPasswordField = (req, res, next) => {
 };
 
 exports.checkIfEmailAndPasswordMatch = async (req, res, next) => {
-    let email = req.body['email'];
-    let password = req.body['password'];
+    let email = req.query['email'];
+    let password = req.query['password'];
 
     let user_hash_password_db = await db.query(`SELECT password FROM ${process.env.DB_DATABASE}.users WHERE email LIKE BINARY '${email}'`).then((rows) => {
         if (rows[0] == null || rows[0] === 'undefined')
