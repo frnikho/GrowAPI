@@ -20,6 +20,8 @@ route.post('/', [AuthConfig.verifyEmailAndPasswordField], (req, res) => {
         } else {
             res.send
         }
+    }).catch((error) => {
+        console.log(error);
     });
 });
 

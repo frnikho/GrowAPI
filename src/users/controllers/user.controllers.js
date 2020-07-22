@@ -7,17 +7,15 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 exports.createUser = async (req, res) => {
-    let email = req.body['email'];
-    let password = req.body['password'];
+    let email = req.query['email'];
+    let password = req.query['password'];
     let id = uniqid();
     password = bcrypt.hashSync(password, saltRounds);
-
     let user_id = await db.query(`INSERT INTO ${process.env.DB_DATABASE}.users (id, email, password) VALUES ('${id}', '${email}', '${password}');`).then((rows) => {
         return (id);
     }).catch((error) => {
-        console.log(error);
         if (error.code === 'ER_DUP_ENTRY') {
-            res.send({status: 400, code: "Username already exists !"});
+            res.send({status: 400, code: "Email already exists !"});
             return (-1);
         }
     });
